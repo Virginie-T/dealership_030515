@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
-
+    require_once __DIR__."/../src/Car.php";
 
     session_start();
     if(empty($_SESSION['car_list'])) {
@@ -9,33 +9,24 @@
 
     $app = new Silex\Application();
 
-    $app->get("/", function() {
-        return "<html>
-        <head>
-            <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
-            <title>Find a Car</title>
-        </head>
-        <body>
-            <div class='container'>
-                <h1>Find a Car!</h1>
-                <form action='/dealer'>
-                    <div class='form-group'>
-                        <label for='user_price'>Enter Maximum Price:</label>
-                        <input id='user_price' name='user_price' class='form-control' type='number'>
-                    </div>
-                    <div class='form-group'>
-                        <label for='user_mileage'>Enter Maximum Mileage:</label>
-                        <input id='user_mileage' name='user_mileage' class='form-control' type='number'>
-                    </div>
-                    <button type='submit' class='btn-success'>Submit</button>
-                </form>
-            </div>
-        </body>
-        </html>
-        ";
+    $app->register(new Silex\Application\TwigServiceProvider(), array(
+        'twig.path' => __DIR__.'/../views'
+    ));
+
+    $app->get("/", function() use ($app) {
+
+        return $app['twig']->render('dealer_template.php', array('cars' => Car::getAll()));
     });
 
-    $app->get("/dealer", function() {
+    $app->post("/create_car", function() use ($app) {
+
+        $car = new Car($_POST['year'], $_POST['make_model'], $_POST['price'], $_POST['miles'], $_POST['image']);
+        $car->save();
+
+        return $app->['twig']->render('create_car.php', array('newcar' => $car));
+
+        //move all code below to a view file
+
         $max_price = $_GET["user_price"];
         $max_mileage = $_GET["user_mileage"];
 
