@@ -5,6 +5,14 @@
     session_start();
     if(empty($_SESSION['car_list'])) {
         $_SESSION['car_list'] = array();
+        $porsche = new Car(2014, "Porsche 911", 113343, 5423, "../img/porsche.jpeg");
+        $porsche->save();
+        $ford = new Car(2011, "Ford F450", 55483, 8394, "../img/ford.jpeg");
+        $ford->save();
+        $lexus = new Car(2013, "Lexus RX 350", 44700, 20000, "../img/lexus.jpeg");
+        $lexus->save();
+        $mercedes = new Car(2009, "Mercedes Benz CLS550", 39900, 37373, "../img/merc.jpeg");
+        $mercedes->save();
     }
 
     $app = new Silex\Application();
@@ -14,6 +22,8 @@
     ));
 
     $app->get("/", function() use ($app) {
+
+
 
         return $app['twig']->render('dealer_template.php', array('cars' => Car::getAll()));
 
@@ -48,7 +58,7 @@
 
         Car::deleteAll();
         return $app['twig']->render('delete_all.php');
-        
+
     });
 
 

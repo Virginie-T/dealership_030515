@@ -24,6 +24,10 @@
                 <label for='miles'>Enter vehicle miles</label>
                 <input id="miles" name="miles" type="number" class='form-control'>
             </div>
+            <div class='form-group'>
+                <label for='image'>Enter vehicle image</label>
+                <input id="image" name="image" type="text" class='form-control'>
+            </div>
             <button type='submit' class='btn btn-success'>Submit</button>
         </form>
 
@@ -50,6 +54,7 @@
         <h2>Car List</h2>
         <ul>
             {% for car in cars %}
+                <li><img src={{ car.getImage }}></li>
                 <li>{{ car.getYear}} {{ car.getMakeModel}}.  ${{ car.getPrice}}. {{ car.getMiles}} miles.</li>
             {% endfor %}
         </ul>

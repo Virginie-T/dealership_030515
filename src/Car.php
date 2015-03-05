@@ -90,26 +90,6 @@
         {
             $_SESSION['car_list'] = array();
         }
-
-        //getMatchingCars
-        //if matching miles and price return array etc...
     }
 
-    // $porsche = new Car(2014, "Porsche 911", 113343, 5423, "../img/porsche.jpeg");
-    // $ford = new Car(2011, "Ford F450", 55483, 8394, "../img/ford.jpeg");
-    // $lexus = new Car(2013, "Lexus RX 350", 44700, 20000, "../img/lexus.jpeg");
-    // $mercedes = new Car(2009, "Mercedes Benz CLS550", 39900, 37373, "../img/merc.jpeg");
-    //
-    // $cars = array($porsche, $ford, $lexus, $mercedes);
-    //
-    // $searched_cars = array();
-    //
-    // foreach ($cars as $car) {
-    //     $car_price = $car->getPrice();
-    //     $car_miles = $car->getMiles();
-    //
-    //     if ($car_miles <= $max_mileage && $car_price <= $max_price) {
-    //         array_push($searched_cars, $car);
-    //     }
-    // }
 ?>
