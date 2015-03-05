@@ -1,0 +1,12 @@
+img {
+    max-width: 250;
+}
+
+ul {
+    list-style-type: none;
+    border-bottom: lightgrey solid 2px;
+}
+
+.content {
+    max-width: 40%;
+}
